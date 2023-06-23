@@ -1,0 +1,12 @@
+{% extends "layouts/index.html" %}
+{% block title %}User Page{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <p>Username: {{ username }} and Password: {{ password }}</p>
+{% endblock %}
