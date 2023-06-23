@@ -24,7 +24,7 @@ def login():
     if request.method == "POST":
         session.permanent = True
         usr = request.form["username"]
-        password = request.form["pass"]
+        password = request.form["password"]
         session["username"] = usr
         session["password"] = password
 
@@ -37,6 +37,16 @@ def login():
             return redirect(url_for("user"))
 
         return render_template("layouts/login.html")
+
+
+@app.route("/logout")
+def logout():
+    if "username" in session:
+        usr = session["username"]
+        flash(f"Thank {usr}, see you!", "info")
+    session.pop("user", None)
+    session.pop("password", None)
+    return redirect(url_for("login"))
 
 
 @app.route('/user', methods=['POST', 'GET'])
