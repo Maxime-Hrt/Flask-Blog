@@ -1,7 +1,9 @@
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask
 from datetime import timedelta
 from dotenv import load_dotenv
 from pathlib import Path
+from apps.essential.log import log
+from apps.essential.users import users
 import os
 
 env_path = Path('.') / '.env'
@@ -12,48 +14,8 @@ app.secret_key = os.environ['SESSION_KEY']
 
 app.permanent_session_lifetime = timedelta(minutes=5)
 
-
-@app.route('/')
-@app.route('/home')
-def index():  # put application's code here
-    return render_template("layouts/home.html")
-
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    if request.method == "POST":
-        session.permanent = True
-        usr = request.form["username"]
-        password = request.form["password"]
-        session["username"] = usr
-        session["password"] = password
-
-        flash("Login Successful")
-        return redirect(url_for("user"))
-
-    else:
-        if "username" in session and "password" in session:
-            flash("Already logged in!")
-            return redirect(url_for("user"))
-
-        return render_template("layouts/login.html")
-
-
-@app.route("/logout")
-def logout():
-    if "username" in session:
-        usr = session["username"]
-        flash(f"Thank {usr}, see you!", "info")
-    session.pop("user", None)
-    session.pop("password", None)
-    return redirect(url_for("login"))
-
-
-@app.route('/user', methods=['POST', 'GET'])
-def user():
-    usr = session["username"]
-    password = session["password"]
-    return render_template("layouts/user.html", username=usr, password=password)
+log.register_blueprint(users, url_prefix="/user")
+app.register_blueprint(log, url_prefix="/")
 
 
 if __name__ == '__main__':

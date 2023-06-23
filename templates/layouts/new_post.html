@@ -1,0 +1,19 @@
+{% extends "layouts/index.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="#" method="post">
+        <label for="title">Title:</label>
+        <input id="title" name="title" type="text" placeholder="New article"/>
+        <label for="content">Content of the blog:</label>
+        <textarea id="content" name="content" rows="6" cols="30"
+                  placeholder="In the ever-changing and dynamic landscape of software development, ...">
+        </textarea>
+    </form>
+{% endblock %}
