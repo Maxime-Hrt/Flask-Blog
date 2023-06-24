@@ -1,5 +1,5 @@
 from flask import Blueprint, session, render_template, current_app
-from database.db import get_all_users
+from database.db_user import get_all_users
 
 data_view = Blueprint("data_view", __name__, static_folder='static', template_folder='templates')
 

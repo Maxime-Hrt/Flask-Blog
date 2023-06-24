@@ -1,4 +1,4 @@
-from database.db import mongo
+from database.db_user import mongo
 from datetime import datetime
 
 

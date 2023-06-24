@@ -1,5 +1,5 @@
 from flask import Blueprint, session, render_template, current_app, request, flash, redirect, url_for
-from database.db import add_user
+from database.db_user import add_user
 from database.db_article import get_all_article, add_article
 
 users = Blueprint("users", __name__, static_folder="static", template_folder="templates")
@@ -11,8 +11,6 @@ def user():
         usr = session["username"]
         password = session["password"]
         email = session["email"]
-
-        add_user(username=usr, password=password, email=email)
 
     return render_template("layouts/user.html", username=usr, password=password, email=email)
 

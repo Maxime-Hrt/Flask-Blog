@@ -4,7 +4,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from flask import Flask
-from database.db import mongo
+from database.db_user import mongo
 
 # ---- BluePrints ---- #
 from apps.essential.log import log
