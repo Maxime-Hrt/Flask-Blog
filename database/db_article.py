@@ -32,6 +32,6 @@ def add_article(username, title, content):
     mongo.db.Articles.insert_one(article.to_dict())
 
 
-def get_all_article():
-    articles = mongo.db.Articles.find()
+def get_articles(username):
+    articles = mongo.db.Articles.find({'username': username})
     return [Article.from_dict(article_data) for article_data in articles]

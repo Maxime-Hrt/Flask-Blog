@@ -63,3 +63,4 @@ def verify_double(username, email):
     """
     return bool(mongo.db.Users.find_one({'username': username}) or
                 bool(mongo.db.Users.find_one({'email': email})))  # Return True if a user or an email is found
+

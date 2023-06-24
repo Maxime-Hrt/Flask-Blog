@@ -1,6 +1,6 @@
 from flask import Blueprint, session, render_template, current_app, request, flash, redirect, url_for
 from database.db_user import add_user
-from database.db_article import get_all_article, add_article
+from database.db_article import get_articles, add_article
 
 users = Blueprint("users", __name__, static_folder="static", template_folder="templates")
 
@@ -32,7 +32,7 @@ def new_post():
     return render_template("layouts/new_post.html")
 
 
-@users.route('/article', methods=['POST', 'GET'])
+@users.route('/articles', methods=['POST', 'GET'])
 def article_view():
-    articles = get_all_article()
+    articles = get_articles(username=session["username"])
     return render_template("layouts/usr_articles.html", articles=articles)

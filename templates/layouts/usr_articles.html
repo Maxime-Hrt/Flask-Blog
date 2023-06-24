@@ -4,7 +4,7 @@
     {% if articles %}
         {% for article in articles %}
             <h2>{{ article.title }}</h2>
-            <i>published at {{ article.date }} by {{ article.username }}</i>
+            <i>published at {{ article.date_of_post }} by {{ article.username }}</i>
             <p>{{ article.content }}</p>
         {% endfor %}
     {% endif %}
