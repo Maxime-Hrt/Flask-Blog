@@ -28,7 +28,7 @@ class User:
             email=data.get('email'),
             password=data.get('password'),
             date_of_creation=data.get('date_of_creation'),
-            articles=data.get('articles', [])
+            # articles=data.get('articles', [])
         )
 
 

@@ -1,0 +1,13 @@
+{% extends "layouts/index.html" %}
+{% block title %}Data view{% endblock %}
+{% block content %}
+    {% if user_list %}
+        {% for user in user_list %}
+            <p>Username:{{ user.username }} -
+                Email:{{ user.email }} -
+                Date of Creation:{{ user.date_of_creation }}
+                Articles:{{ user.articles }}
+            </p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
