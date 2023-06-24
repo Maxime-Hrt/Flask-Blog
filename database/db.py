@@ -10,7 +10,6 @@ class User:
         self.email = email
         self.password = password
         self.date_of_creation = date_of_creation or datetime.now()
-        self.articles = []
 
     def to_dict(self):
         return {
@@ -18,7 +17,6 @@ class User:
             'email': self.email,
             'password': self.password,
             'date_of_creation': self.date_of_creation,
-            'articles': self.articles
         }
 
     @classmethod
@@ -28,7 +26,6 @@ class User:
             email=data.get('email'),
             password=data.get('password'),
             date_of_creation=data.get('date_of_creation'),
-            # articles=data.get('articles', [])
         )
 
 
