@@ -33,8 +33,6 @@ def new_post():
 
 @users.route('/edit_article/<article_date>', methods=['POST', 'GET'])
 def edit_article(article_date):
-    print("KOKOKOK")
-    print(article_date)
     article = get_article_by_date(date_of_post=article_date)
 
     with current_app.app_context():
@@ -48,7 +46,7 @@ def edit_article(article_date):
 
                 add_article(username=username, title=title, content=content)
 
-                flash("The article is posted")
+                flash("The article is edited")
                 return redirect(url_for("log.users.article_view"))
 
     return render_template("layouts/new_post.html", title=article.title, article_text=article.content)

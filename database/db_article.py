@@ -1,5 +1,6 @@
 from database.db_user import mongo
 from datetime import datetime
+from flask import session
 
 
 class Article:
@@ -38,14 +39,11 @@ def get_articles(username):
 
 
 def get_article_by_date(date_of_post):
-    article = mongo.db.Articles.find_one({'date_of_post': date_of_post})
-    print(date_of_post)
-    print("cacaca")
-    print(article)
-    if article:
-        return Article.from_dict(article)
-    else:
-        return None
+    for article in get_articles(session['username']):
+        if str(article.date_of_post) == date_of_post:
+            return article
+
+    return None
 
 
 def delete_article(date_of_post):
