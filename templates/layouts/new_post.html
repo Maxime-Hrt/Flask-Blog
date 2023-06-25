@@ -10,11 +10,9 @@
     {% endwith %}
     <form action="#" method="post">
         <label for="title">Title:</label>
-        <input id="title" name="title" type="text" placeholder="New article"/>
+        <input id="title" name="title" type="text" placeholder="Article 1" value="{{ title }}"/>
         <label for="content">Content of the blog:</label>
-        <textarea id="content" name="content" rows="6" cols="30"
-                  placeholder="In the ever-changing and dynamic landscape of software development, ...">
-        </textarea>
+        <textarea id="content" name="content" rows="6" cols="30">{{ article_text }}</textarea>
         <input type="submit" value="submit">
     </form>
 {% endblock %}

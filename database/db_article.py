@@ -35,3 +35,20 @@ def add_article(username, title, content):
 def get_articles(username):
     articles = mongo.db.Articles.find({'username': username})
     return [Article.from_dict(article_data) for article_data in articles]
+
+
+def get_article_by_date(date_of_post):
+    article = mongo.db.Articles.find_one({'date_of_post': date_of_post})
+    print(date_of_post)
+    print("cacaca")
+    print(article)
+    if article:
+        return Article.from_dict(article)
+    else:
+        return None
+
+
+def delete_article(date_of_post):
+    print(date_of_post)
+    mongo.db.Articles.delete_one({'date_of_post': date_of_post})
+

@@ -1,11 +1,28 @@
 {% extends "layouts/index.html" %}
 {% block title %}My Posts{% endblock %}
 {% block content %}
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     {% if articles %}
         {% for article in articles %}
             <h2>{{ article.title }}</h2>
             <i>published at {{ article.date_of_post }} by {{ article.username }}</i>
             <p>{{ article.content }}</p>
+            <form action="#" method="post">
+                <input type="hidden" name="{{"edit_" + article.date_of_post|string }}" value="{{ "edit_" + article.date_of_post|string }}" />
+                <input type="submit" value="Edit" />
+            </form>
+            <form action="#" method="post">
+                <input type="hidden" name="{{ "delete_" + article.date_of_post|string }}" value="{{ "delete_" + article.date_of_post|string }}" />
+                <input type="submit" value="Delete" />
+            </form>
         {% endfor %}
     {% endif %}
 {% endblock %}
