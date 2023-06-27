@@ -28,6 +28,10 @@ def new_post():
                 flash("The article is posted")
                 return redirect(url_for("log.users.article_view"))
 
+        else:
+            flash("You have to login first")
+            return redirect(url_for("log.login"))
+
     return render_template("layouts/new_post.html", title="", article_text="")
 
 
