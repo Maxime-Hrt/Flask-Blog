@@ -74,7 +74,10 @@ def logout():
         if "username" in session:
             usr = session["username"]
             flash(f"Thank {usr}, see you!", "info")
-        session.pop("user", None)
-        session.pop("password", None)
-        session.pop("email", None)
+            session.pop("username", None)
+            session.pop("password", None)
+            session.pop("email", None)
+        else:
+            flash("You are not logged in!")
+
         return redirect(url_for("log.login"))

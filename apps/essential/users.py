@@ -54,6 +54,10 @@ def edit_article(article_date):
 
 @users.route('/articles', methods=['POST', 'GET'])
 def article_view():
+    if "username" not in session:
+        flash("You have to login first")
+        return redirect(url_for("log.login"))
+
     articles = get_articles(username=session["username"])
 
     if request.method == "POST":
